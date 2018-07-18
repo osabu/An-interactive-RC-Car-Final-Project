@@ -23,7 +23,7 @@ int noteDurations[] = {
 void setup() {
   pinMode(redPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
-  pinMode(motor , OUTPUT)
+  pinMode(motor , OUTPUT);
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);
   pinMode(in3, OUTPUT);
@@ -65,7 +65,7 @@ else if( x == 0 || x == -1 )
  digitalWrite(in4, LOW);   
 }
 
-else()
+else
    {
        digitalWrite(in1, LOW);
        digitalWrite(in2, HIGH);
@@ -79,7 +79,6 @@ void controlTheTurnOfTheCar()
 {
   int y = analogRead(Y_pin) ; 
   y = map (y, 0, 1023, 0, 180);
-  myservo.write(y) ;
   Serial.print("Switch:  ");
   Serial.print(digitalRead(SW_pin));
   Serial.print("\n");
