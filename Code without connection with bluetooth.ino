@@ -1,7 +1,8 @@
 /*
- 
+ * The final project, it's a rc car, which controlled with a joystick. To turn the car to right or to left, you 've to move the wheels backwards and forwards
+ * The car has 2 LED's, one Buzzer, one Fan, and an ultra sonic to control the distance between the car and another objects 
+ *
  */
-#include <Servo.h>
 #include "pitches.h"
 int melody[] = {
   NOTE_E4, NOTE_C4,
@@ -9,17 +10,16 @@ int melody[] = {
 int noteDurations[] = {
   2,2,
 };
-#define redPin  10
-#define bluePin  11 
-#define SW_pin  2 // digital pin connected to switch output
-#define X_pin  0 // analog pin connected to X output
-#define Y_pin  1 // analog pin connected to Y output
+#define redPin  10 // the red LED is attached to pin no. 10
+#define bluePin  11 // the blue LED is attached to pin no. 11
+#define SW_pin  2 // digital pin connected to switch output , to pin no. 2
+#define X_pin  0 // the X-Axix input is attached to pin no.0 
+#define Y_pin  1 // the Y-Axix inout is attached to pin no.1
 #define in3 4 // DC Motor no. 1 
 #define in4 5 // DC Motor no. 1
 #define in1 6 // DC Motor no. 2
 #define in2 7 // DC Motor no. 2
-#define motor 10
-Servo myservo;
+#define motor 10 // the fan motor is attached to pin no. 10
 void setup() {
   pinMode(redPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
@@ -28,18 +28,17 @@ void setup() {
   pinMode(in2, OUTPUT);
   pinMode(in3, OUTPUT);
   pinMode(in4, OUTPUT);
-  myservo.attach(9);
   pinMode(SW_pin, INPUT);
   digitalWrite(SW_pin, HIGH);
   Serial.begin(115200);
 
  }
 void loop() {
-  ControllingTheDCMotor();
-  ControllingTheServoMotor();
+  controlTheBackAndForwardForTheCar();
+  controlTheTurnOfTheCar();
   }
 //
-void ControllingTheDCMotor()
+void controlTheBackAndForwardForTheCar()
 {
   int x = analogRead(X_pin) ; 
   x = map (x, 0, 1023, -10, 10);
@@ -67,16 +66,16 @@ else if( x == 0 || x == -1 )
 }
 
 else()
-{
-    digitalWrite(in1, LOW);
-    digitalWrite(in2, HIGH);
-    digitalWrite(in3, LOW);
-    digitalWrite(in4, HIGH);
-}
+   {
+       digitalWrite(in1, LOW);
+       digitalWrite(in2, HIGH);
+       digitalWrite(in3, LOW);
+       digitalWrite(in4, HIGH);
+   }
 
 }  
 //
-void ControllingTheServoMotor()
+void controlTheTurnOfTheCar()
 {
   int y = analogRead(Y_pin) ; 
   y = map (y, 0, 1023, 0, 180);
@@ -88,9 +87,11 @@ void ControllingTheServoMotor()
   Serial.println(y);
   Serial.print("\n\n");
   delay(500);
-if(y > 90)
+if(y > 90) //Turning the car to the right
   {
-    digitalWrite(redPin, HIGH); // turn the red light on
+ digitalWrite(in1, LOW);
+ digitalWrite(in2, HIGH);
+digitalWrite(redPin, HIGH); // turn the red light on
 delay(50); // wait 50 ms
 
 digitalWrite(redPin, LOW); // turn the red light off
@@ -145,10 +146,16 @@ delay(50); // wait 50 ms
   }
 else if( y == 89 || y == 90)
   {
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, LOW);
     
   }
-else
+else // Turning the car to the left
   {
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
     digitalWrite(motor, HIGH) ;
     delay(100) ;
   }
