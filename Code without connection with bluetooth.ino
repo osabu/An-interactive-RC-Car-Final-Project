@@ -10,7 +10,7 @@ int melody[] = {
 int noteDurations[] = {
   2,2,
 };
-#define redPin  10 // the red LED is attached to pin no. 10
+#define redPin  12 // the red LED is attached to pin no. 10
 #define bluePin  11 // the blue LED is attached to pin no. 11
 #define SW_pin  2 // digital pin connected to switch output , to pin no. 2
 #define X_pin  0 // the X-Axix input is attached to pin no.0 
