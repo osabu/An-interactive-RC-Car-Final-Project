@@ -1,12 +1,10 @@
-#include <IRremote.h>
-#include "pins_arduino.h"
-//#include "pitches.h"
-/*int melody[] = {
-  NOTE_E4, NOTE_C4,
-};
-int noteDurations[] = {
-  2,2,
-};*/
+/*Osman's code
+*That's the code for the conrolling rc car with the IR transmiter and reciver 
+*You should change the hex numbers in the cases, because every remote has it's own decoding hex codes
+*Last editing :  20/07/18 , 12:58 
+*/
+#include <IRremote.h> // library for controlling with the IR remote
+#include "pins_arduino.h" // 
 #define RECV_PIN 3
 IRrecv irrecv(RECV_PIN);
 //Pin should be PWM
@@ -96,7 +94,7 @@ void loop() {
              digitalWrite(in4, LOW);
                           
               digitalWrite(trigPin, LOW);
-              delayMicrosecondsx(2);
+              delayMicroseconds(2);
               // Sets the trigPin on HIGH state for 10 micro seconds
               digitalWrite(trigPin, HIGH);
               delayMicroseconds(10);
@@ -178,6 +176,5 @@ void PoBuzzer()
   digitalWrite(Buzzer , HIGH) ; 
   delay(1000) ; 
   digitalWrite(Buzzer , LOW) ; 
-  delay(200) ;
-  
+  delay(200) ;  
 }
