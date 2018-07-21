@@ -1,5 +1,7 @@
 /*
-*Osman and Jason'code
+*Osman'scode
+*This code is basically to map the values of the joystick
+*Last edit : 21.07.18, 19:15 
 */
 const int SW_pin = 2; // digital pin connected to switch output
 int X_pin = 0; // analog pin connected to X output
