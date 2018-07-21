@@ -1,7 +1,7 @@
-/*
- * The final project, it's a rc car, which controlled with a joystick. To turn the car to right or to left, you 've to move the wheels backwards and forwards
- * The car has 2 LED's, one Buzzer, one Fan, and an ultra sonic to control the distance between the car and another objects 
- *
+/*Osman's code
+ * The final project, it's a rc car, which controlled with a joystick. With this Joystick you are able to turn the car right and left, and to move the wheels backwards and forwards
+ * The car has 2 LED's, one Buzzer, one Fan, and an ultra sonic to control the distance between the car and another objects. 
+ *laast edition : 21.07.18 , 18:21
  */
 #include "pitches.h"
 int melody[] = {
@@ -21,6 +21,7 @@ int noteDurations[] = {
 #define in2 7 // DC Motor no. 2
 #define motor 10 // the fan motor is attached to pin no. 10
 void setup() {
+  //defining the Inputs and the Outputs 
   pinMode(redPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
   pinMode(motor , OUTPUT);
@@ -34,8 +35,9 @@ void setup() {
 
  }
 void loop() {
-  controlTheBackAndForwardForTheCar();
-  controlTheTurnOfTheCar();
+  //Calling this two functions
+  controlTheBackAndForwardForTheCar();//For the movement backward and forward
+  controlTheTurnOfTheCar();//For the turning left and right 
   }
 //
 void controlTheBackAndForwardForTheCar()
@@ -161,15 +163,7 @@ else // Turning the car to the left
 }
 
 /*
-// 
-void PushButtonForPolice()
-{}
-
-//
-void CircleMovementUsingPushButton() 
-{}
-
-//
+//To turn the fan on and off, it's as a comment
 void TurningTheFanUsingPushButton ()
 {}
 
