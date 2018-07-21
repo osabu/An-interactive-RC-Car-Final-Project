@@ -1,7 +1,7 @@
 /*Osman's code
 *That's the code for the conrolling rc car with the IR transmiter and reciver 
 *You should change the hex numbers in the cases, because every remote has it's own decoding hex codes
-*Last editing :  20/07/18 , 12:58 
+*Last editing :  21/07/18 , 19:19 
 */
 #include <IRremote.h> // library for controlling with the IR remote
 #include "pins_arduino.h" // 
@@ -25,7 +25,7 @@ int distance;
 boolean OnAndOff = true ; //turning on and off  
 decode_results results;
 void setup()
-{ 
+{ //define the inputs and the outputs
   irrecv.enableIRIn(); // Start the receiver
   pinMode(in1,OUTPUT);
   pinMode(in2,OUTPUT);
@@ -44,28 +44,28 @@ void loop() {
   if (irrecv.decode(&results)) {
       switch(results.value)
       {        
-        case 0xFF18E7:  //Serial.println("Forward"); // Button 2  
+        case 0xFF18E7:  //Serial.println("Forward"); //Move forward //Button 2  
                           digitalWrite(in1, HIGH);
                           digitalWrite(in2, LOW);
                           digitalWrite(in3, HIGH);
                           digitalWrite(in4, LOW);
                          break;       
-        case 0xFF10EF:  //Serial.println("Left"); // Button 4
+        case 0xFF10EF:  //Serial.println("Left"); //turn left Button 4
                          digitalWrite(in3, LOW);
                          digitalWrite(in4, HIGH);
                          break; 
-        case 0xFF38C7:  //Serial.println("Stop"); // Button 5
+        case 0xFF38C7:  //Serial.println("Stop"); //stop the car //Button 5
                           
                          digitalWrite(in1, LOW);
                          digitalWrite(in2, LOW);
                          digitalWrite(in3, LOW);
                          digitalWrite(in4, LOW);  
                          break; 
-        case 0xFF5AA5:  //Serial.println("Left"); // Button 6
+        case 0xFF5AA5:  //Serial.println("Left"); //turn right //Button 6
                          digitalWrite(in1, LOW);
                          digitalWrite(in2, HIGH);
                          break;         
-       case 0xFF4AB5:  //Serial.println("Right"); // Button 8  
+       case 0xFF4AB5:  //Serial.println("Right"); //Move backward //Button 8  
                          digitalWrite(in1, LOW);
                          digitalWrite(in2, HIGH);
                          digitalWrite(in3, LOW);
@@ -169,7 +169,7 @@ void loop() {
     irrecv.resume(); // Receive the next value
   }
 }
-
+// A function for turning the buzzer on and off
 void PoBuzzer()
 {
   
